@@ -1,4 +1,4 @@
-﻿namespace NexusTest.Model
+﻿namespace NexusTest.Domain
 {
     public class Class1
     {
