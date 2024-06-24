@@ -21,6 +21,26 @@ namespace NexusTest.Domain.Entities
         public string Email { get; private set; }
         public string Address { get; private set; }
 
+        public void ChangeName(string name)
+        {
+            Validacoes.CampoEstaVazioOuNulo(name, "O campo Name não pode estar vazio ou nulo");
+            Name = name;
+        }
+
+        public void ChangeEmail(string email)
+        {
+            Validacoes.CampoEstaVazioOuNulo(email, "O campo Email não pode estar vazio ou nulo");
+            Email = email;
+        }
+
+
+        public void ChangeAddress(string address)
+        {
+            Validacoes.CampoEstaVazioOuNulo(address, "O campo Address não pode estar vazio ou nulo");
+            Address = address;
+        }
+
+
         public override void ValidarEntidade()
         {
             Validacoes.CampoEstaVazioOuNulo(Name, "O campo Name não pode estar vazio ou nulo");

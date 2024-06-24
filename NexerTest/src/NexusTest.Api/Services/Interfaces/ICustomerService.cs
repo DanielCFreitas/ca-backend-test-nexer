@@ -1,5 +1,6 @@
 ﻿using NexusTest.Api.DTO;
 using NexusTest.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace NexusTest.Api.Services.Interfaces
 {
@@ -27,9 +28,9 @@ namespace NexusTest.Api.Services.Interfaces
         /// <summary>
         /// Atualiza um cliente no banco
         /// </summary>
-        /// <param name="customer">Cliente para ser atualizado</param>
+        /// <param name="request">Cliente para ser atualizado</param>
         /// <returns></returns>
-        Task AtualizarCliente(Customer customer);
+        Task<ValidationResult> AtualizarCliente(Guid id, AtualizarClienteRequest request);
 
         /// <summary>
         /// Exclui um cliente atraves do id

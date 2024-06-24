@@ -3,6 +3,7 @@ using NexusTest.Api.Services.Interfaces;
 using NexusTest.Domain.Entities;
 using NexusTest.Domain.Repositories;
 using NexusTest.SharedKernel.Api;
+using System.ComponentModel.DataAnnotations;
 
 namespace NexusTest.Api.Services
 {
@@ -15,9 +16,20 @@ namespace NexusTest.Api.Services
             _customerRepository = customerRepository;
         }
 
-        public Task AtualizarCliente(Customer customer)
+        public async Task<ValidationResult> AtualizarCliente(Guid id, AtualizarClienteRequest request)
         {
-            throw new NotImplementedException();
+            var cliente = await _customerRepository.SearchCustomerById(id);
+
+            if (cliente is null)
+                return new ValidationResult("Cliente não encontrado");
+
+            cliente.ChangeName(request.Name);
+            cliente.ChangeEmail(request.Email);
+            cliente.ChangeAddress(request.Address);
+
+            _customerRepository.UpdateCustomer(cliente);
+            await SalvarAlteracoes(_customerRepository.unitOfWork);
+            return new ValidationResult(string.Empty);
         }
 
         public async Task<Customer?> BuscarClientePorId(Guid id)

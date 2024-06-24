@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using NexusTest.Api.DTO;
 using NexusTest.Api.Services.Interfaces;
 using NexusTest.SharedKernel.Api;
@@ -37,6 +38,13 @@ namespace NexusTest.Api.Controllers
         {
             await _customerService.CadastrarCliente(request);
             return BaseResponse();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(Guid id, [FromBody] AtualizarClienteRequest request)
+        {
+            var validationResult = await _customerService.AtualizarCliente(id, request);
+            return BaseResponse(validationResult);
         }
     }
 }
