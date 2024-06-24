@@ -20,9 +20,9 @@ namespace NexusTest.Api.Services
             throw new NotImplementedException();
         }
 
-        public Task<Customer> BuscarClientePorId(Guid id)
+        public async Task<Customer?> BuscarClientePorId(Guid id)
         {
-            throw new NotImplementedException();
+            return await _customerRepository.SearchCustomerById(id);
         }
 
         public async Task CadastrarCliente(CadastrarClienteRequest request)

@@ -16,7 +16,7 @@ namespace NexusTest.SharedKernel.Api
         protected IActionResult BaseResponse(ValidationResult validationResult, object? resultado = null)
         {
             if (validationResult?.ErrorMessage?.Length > 0)
-                return new BadRequestResult();
+                return new BadRequestObjectResult(validationResult.ErrorMessage);
             if (resultado != null)
                 return new OkObjectResult(resultado);
             return new OkResult();

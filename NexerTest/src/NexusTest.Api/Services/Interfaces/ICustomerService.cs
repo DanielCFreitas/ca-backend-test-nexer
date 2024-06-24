@@ -22,7 +22,7 @@ namespace NexusTest.Api.Services.Interfaces
         /// </summary>
         /// <param name="id">Id do cliente</param>
         /// <returns></returns>
-        Task<Customer> BuscarClientePorId(Guid id);
+        Task<Customer?> BuscarClientePorId(Guid id);
 
         /// <summary>
         /// Atualiza um cliente no banco

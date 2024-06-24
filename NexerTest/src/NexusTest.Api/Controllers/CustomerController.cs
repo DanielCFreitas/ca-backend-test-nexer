@@ -2,6 +2,7 @@
 using NexusTest.Api.DTO;
 using NexusTest.Api.Services.Interfaces;
 using NexusTest.SharedKernel.Api;
+using System.ComponentModel.DataAnnotations;
 
 namespace NexusTest.Api.Controllers
 {
@@ -22,7 +23,16 @@ namespace NexusTest.Api.Controllers
             return BaseResponse(clientes);
         }
 
-        [HttpPost] 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var cliente = await _customerService.BuscarClientePorId(id);
+            if (cliente == null)
+                return BaseResponse(new ValidationResult("Cliente não encontrado"));
+            return BaseResponse(cliente);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Post([FromBody] CadastrarClienteRequest request)
         {
             await _customerService.CadastrarCliente(request);
