@@ -1,4 +1,5 @@
-﻿using NexusTest.Domain.Entities;
+﻿using NexusTest.Api.DTO;
+using NexusTest.Domain.Entities;
 
 namespace NexusTest.Api.Services.Interfaces
 {
@@ -8,7 +9,7 @@ namespace NexusTest.Api.Services.Interfaces
         /// Cadastra um novo cliente
         /// </summary>
         /// <returns></returns>
-        Task CadastrarCliente();
+        Task CadastrarCliente(CadastrarClienteRequest request);
 
         /// <summary>
         /// Lista todos os clientes

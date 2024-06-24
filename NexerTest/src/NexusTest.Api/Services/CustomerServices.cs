@@ -1,4 +1,5 @@
-﻿using NexusTest.Api.Services.Interfaces;
+﻿using NexusTest.Api.DTO;
+using NexusTest.Api.Services.Interfaces;
 using NexusTest.Domain.Entities;
 using NexusTest.Domain.Repositories;
 using NexusTest.SharedKernel.Api;
@@ -24,9 +25,11 @@ namespace NexusTest.Api.Services
             throw new NotImplementedException();
         }
 
-        public Task CadastrarCliente()
+        public async Task CadastrarCliente(CadastrarClienteRequest request)
         {
-            throw new NotImplementedException();
+            var cliente = new Customer(request.Name, request.Email, request.Address);
+            _customerRepository.AddCustomer(cliente);
+            await SalvarAlteracoes(_customerRepository.unitOfWork);
         }
 
         public Task ExcluirCliente(Guid id)

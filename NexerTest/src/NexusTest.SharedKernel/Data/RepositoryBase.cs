@@ -6,6 +6,6 @@
     /// <typeparam name="T">Tipo BaseEntity necessario para implementacao</typeparam>
     public interface RepositoryBase<T> : IDisposable where T : BaseEntity
     {
-        IUnitOfWork? unitOfWork { get; }
+        IUnitOfWork unitOfWork { get; }
     }
 }
