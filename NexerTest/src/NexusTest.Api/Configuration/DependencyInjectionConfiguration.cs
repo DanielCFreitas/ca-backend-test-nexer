@@ -14,9 +14,11 @@ namespace NexusTest.Api.Configuration
 
             // Repositories
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
             // Services
             services.AddScoped<ICustomerService, CustomerServices>();
+            services.AddScoped<IProductService, ProductService>();
         }
     }
 }

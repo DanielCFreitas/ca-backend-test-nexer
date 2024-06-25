@@ -43,6 +43,7 @@ namespace NexusTest.Domain.Entities
 
         public override void ValidarEntidade()
         {
+            Validacoes.CampoEstaVazio(Id, "O campo Id não pode estar vazio");
             Validacoes.CampoEstaVazioOuNulo(Name, "O campo Name não pode estar vazio ou nulo");
             Validacoes.CampoEstaVazioOuNulo(Address, "O campo Address não pode estar vazio ou nulo");
             Validacoes.CampoEstaVazioOuNulo(Email, "O campo Email não pode estar vazio ou nulo");

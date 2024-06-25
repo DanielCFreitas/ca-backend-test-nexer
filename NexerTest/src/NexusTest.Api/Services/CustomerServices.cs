@@ -44,9 +44,16 @@ namespace NexusTest.Api.Services
             await SalvarAlteracoes(_customerRepository.unitOfWork);
         }
 
-        public Task ExcluirCliente(Guid id)
+        public async Task<ValidationResult> ExcluirCliente(Guid id)
         {
-            throw new NotImplementedException();
+            var cliente = await _customerRepository.SearchCustomerById(id);
+
+            if (cliente is null)
+                return new ValidationResult("Cliente não encontrado");
+
+            _customerRepository.DeleteCustomer(cliente);
+            await SalvarAlteracoes(_customerRepository.unitOfWork);
+            return new ValidationResult(string.Empty);
         }
 
         public async Task<IEnumerable<Customer>> ListarClientes()

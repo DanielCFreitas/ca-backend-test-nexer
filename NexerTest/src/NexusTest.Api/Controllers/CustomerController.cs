@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NexusTest.Api.DTO;
 using NexusTest.Api.Services.Interfaces;
 using NexusTest.SharedKernel.Api;
@@ -45,6 +44,15 @@ namespace NexusTest.Api.Controllers
         {
             var validationResult = await _customerService.AtualizarCliente(id, request);
             return BaseResponse(validationResult);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var cliente = await _customerService.ExcluirCliente(id);
+            if (cliente == null)
+                return BaseResponse(new ValidationResult("Cliente não encontrado"));
+            return BaseResponse(cliente);
         }
     }
 }

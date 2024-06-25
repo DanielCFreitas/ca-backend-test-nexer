@@ -14,7 +14,7 @@ namespace NexusTest.Infraestructure.Data.Repositories
             _applicationDbContext = applicationDbContext;
         }
 
-        public IUnitOfWork? unitOfWork => _applicationDbContext;
+        public IUnitOfWork unitOfWork => _applicationDbContext;
 
         public void AddCustomer(Customer customer)
         {

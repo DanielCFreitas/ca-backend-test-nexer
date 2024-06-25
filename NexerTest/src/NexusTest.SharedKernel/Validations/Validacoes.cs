@@ -18,5 +18,17 @@ namespace NexusTest.SharedKernel.Validations
             if (string.IsNullOrEmpty(campo))
                 throw new DomainException(mensagem);
         }
+
+        /// <summary>
+        /// Metodo para validar se o campo esta vazio
+        /// </summary>
+        /// <param name="campo">Campo que sera testado</param>
+        /// <param name="mensagem">Mensagem de erro para o desenvolvedor</param>
+        /// <exception cref="DomainException">Estoura uma exception de dominio</exception>
+        public static void CampoEstaVazio(Guid campo, string mensagem)
+        {
+            if (Guid.Empty == campo)
+                throw new DomainException(mensagem);
+        }
     }
 }

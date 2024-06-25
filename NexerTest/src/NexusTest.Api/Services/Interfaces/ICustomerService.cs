@@ -37,6 +37,6 @@ namespace NexusTest.Api.Services.Interfaces
         /// </summary>
         /// <param name="id">id do cliente</param>
         /// <returns></returns>
-        Task ExcluirCliente(Guid id);
+        Task<ValidationResult> ExcluirCliente(Guid id);
     }
 }
