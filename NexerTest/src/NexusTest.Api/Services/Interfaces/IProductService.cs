@@ -28,6 +28,7 @@ namespace NexerTest.Api.Services.Interfaces
         /// <summary>
         /// Update a product
         /// </summary>
+        /// <param name="id">Product ID</param>
         /// <param name="request">Updated product</param>
         /// <returns></returns>
         Task<ValidationResult> UpdateProduct(Guid id, UpdateProductRequest request);

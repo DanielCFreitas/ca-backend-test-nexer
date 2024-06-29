@@ -38,7 +38,17 @@ namespace NexerTest.UnitTests.Api.Services
 
             var billingService = new BillingService(productRepositoryMock.Object, customerRepositoryMock.Object, billingRepositoryMock.Object);
 
-            var request = new AddBillingRequest("INV-01", DateTime.Now, DateTime.Now, "BRL", Guid.NewGuid(), Guid.NewGuid(), 1, .5m);
+            var request = new AddBillingRequest()
+            {
+                Currency = "BRL",
+                CustomerId = Guid.NewGuid(),
+                Date = DateTime.Now,
+                DueDate = DateTime.Now,
+                InvoiceNumber = "INV-01",
+                ProductId = Guid.NewGuid(),
+                Quantity = 1,
+                UnitPrice = .5m
+            };
 
             // Act
             var resultado = await billingService.AddBilling(request);
@@ -69,7 +79,17 @@ namespace NexerTest.UnitTests.Api.Services
 
             var billingService = new BillingService(productRepositoryMock.Object, customerRepositoryMock.Object, billingRepositoryMock.Object);
 
-            var request = new AddBillingRequest("INV-01", DateTime.Now, DateTime.Now, "BRL", Guid.NewGuid(), Guid.NewGuid(), 1, .5m);
+            var request = new AddBillingRequest()
+            {
+                Currency = "BRL",
+                CustomerId = Guid.NewGuid(),
+                Date = DateTime.Now,
+                DueDate = DateTime.Now,
+                InvoiceNumber = "INV-01",
+                ProductId = Guid.NewGuid(),
+                Quantity = 1,
+                UnitPrice = .5m
+            };
 
             // Act
             var resultado = await billingService.AddBilling(request);
@@ -100,7 +120,17 @@ namespace NexerTest.UnitTests.Api.Services
 
             var billingService = new BillingService(productRepositoryMock.Object, customerRepositoryMock.Object, billingRepositoryMock.Object);
 
-            var request = new AddBillingRequest("INV-01", DateTime.Now, DateTime.Now, "BRL", Guid.NewGuid(), Guid.NewGuid(), 1, .5m);
+            var request = new AddBillingRequest()
+            {
+                Currency = "BRL",
+                CustomerId = Guid.NewGuid(),
+                Date = DateTime.Now,
+                DueDate = DateTime.Now,
+                InvoiceNumber = "INV-01",
+                ProductId = Guid.NewGuid(),
+                Quantity = 1,
+                UnitPrice = .5m
+            };
 
             // Act
             var resultado = await billingService.AddBilling(request);

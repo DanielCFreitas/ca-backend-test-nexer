@@ -30,6 +30,7 @@ namespace NexerTest.Domain.Entities
         public override void ValidateEntity()
         {
             Validations.FieldIsEmpty(Id, "The Id field cannot be empty");
+            Validations.FieldMustBeLessThan(Name.Length, 101, "The field must have a maximum of 100 characters");
             Validations.FieldIsNullOrEmpty(Name, "The Name field cannot be empty or null");
         }
     }

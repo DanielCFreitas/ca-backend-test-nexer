@@ -63,6 +63,16 @@ namespace NexerTest.Domain.Entities
             billingLine.SetBilling(this);
         }
 
+        /// <summary>
+        /// Set the customer Id
+        /// </summary>
+        public void SetCustomerId(Guid customerId)
+        {
+            Validations.FieldIsEmpty(customerId, "The customer ID needs to be provided");
+
+            CustomerId = customerId;
+        }
+
         public override void ValidateEntity()
         {
             Validations.FieldIsNullOrEmpty(InvoiceNumber, "InvoiceNumber field is empty");

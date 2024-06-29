@@ -54,6 +54,7 @@ namespace NexerTest.Domain.Entities
         {
             Validations.FieldIsEmpty(ProductId, "Product ID needs to be provided");
             Validations.FieldIsNullOrEmpty(Description, "Description field is empty");
+            Validations.FieldMustBeLessThan(Description.Length, 101, "The field must have a maximum of 100 characters");
             Validations.FieldMustBeGratherThan(Quantity, 0, "The field must be greater than 0");
             Validations.FieldMustBeGratherThan(UnitPrice, 0.0m, "The field must be greater than 0");
         }

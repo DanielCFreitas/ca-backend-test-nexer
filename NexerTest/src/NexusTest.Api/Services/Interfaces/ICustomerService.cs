@@ -28,6 +28,7 @@ namespace NexerTest.Api.Services.Interfaces
         /// <summary>
         /// Update customer
         /// </summary>
+        /// <param name="id">Customer ID</param>
         /// <param name="request">Customer updated</param>
         /// <returns></returns>
         Task<ValidationResult> UpdateCustomer(Guid id, UpdateCustomerRequest request);
