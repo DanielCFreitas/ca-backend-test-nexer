@@ -1,15 +1,15 @@
-﻿using NexusTest.SharedKernel.Data;
+﻿using NexerTest.SharedKernel.Data;
 
-namespace NexusTest.SharedKernel.Api
+namespace NexerTest.SharedKernel.Api
 {
     public abstract class BaseService
     {
         /// <summary>
-        /// Persiste as alteracoes realizada por um service
+        /// Save changes
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
         /// <returns></returns>
-        protected async Task SalvarAlteracoes(IUnitOfWork unitOfWork)
+        protected async Task SaveChanges(IUnitOfWork unitOfWork)
         {
             await unitOfWork.CommitAsync();
         }

@@ -1,10 +1,10 @@
-﻿namespace NexusTest.SharedKernel.Data
+﻿namespace NexerTest.SharedKernel.Data
 {
     /// <summary>
-    /// Classe base para os repositories
+    /// Base class for repositories
     /// </summary>
-    /// <typeparam name="T">Tipo BaseEntity necessario para implementacao</typeparam>
-    public interface RepositoryBase<T> : IDisposable where T : BaseEntity
+    /// <typeparam name="T">BaseEntity type required for implementation</typeparam>
+    public interface IRepositoryBase<T> : IDisposable where T : BaseEntity
     {
         IUnitOfWork unitOfWork { get; }
     }

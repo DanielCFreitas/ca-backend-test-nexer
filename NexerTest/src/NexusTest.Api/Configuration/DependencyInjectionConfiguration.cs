@@ -1,10 +1,10 @@
-﻿using NexusTest.Api.Services;
-using NexusTest.Api.Services.Interfaces;
-using NexusTest.Domain.Repositories;
-using NexusTest.Infraestructure.Data;
-using NexusTest.Infraestructure.Data.Repositories;
+﻿using NexerTest.Api.Services;
+using NexerTest.Api.Services.Interfaces;
+using NexerTest.Domain.Repositories;
+using NexerTest.Infraestructure.Data;
+using NexerTest.Infraestructure.Data.Repositories;
 
-namespace NexusTest.Api.Configuration
+namespace NexerTest.Api.Configuration
 {
     public static class DependencyInjectionConfiguration
     {
@@ -13,10 +13,12 @@ namespace NexusTest.Api.Configuration
             services.AddScoped<ApplicationDbContext>();
 
             // Repositories
+            services.AddScoped<IBillingRepository, BillingRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
             // Services
+            services.AddScoped<IBillingService, BillingService>();
             services.AddScoped<ICustomerService, CustomerServices>();
             services.AddScoped<IProductService, ProductService>();
         }

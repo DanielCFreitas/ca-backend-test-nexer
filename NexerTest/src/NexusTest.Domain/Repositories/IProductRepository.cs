@@ -1,39 +1,42 @@
-﻿using NexusTest.Domain.Entities;
-using NexusTest.SharedKernel.Data;
+﻿using NexerTest.Domain.Entities;
+using NexerTest.SharedKernel.Data;
 
-namespace NexusTest.Domain.Repositories
+namespace NexerTest.Domain.Repositories
 {
-    public interface IProductRepository : RepositoryBase<Product>
+    /// <summary>
+    /// Repository for the product entity
+    /// </summary>
+    public interface IProductRepository : IRepositoryBase<Product>
     {
         /// <summary>
-        /// Cadastra um novo produto no banco de dados
+        /// Register a new product in the database
         /// </summary>
-        /// <param name="product">Produto que sera cadastrado</param>
+        /// <param name="product">Product that will be registered</param>
         void AddProduct(Product product);
 
         /// <summary>
-        /// Busca produto por Id
+        /// Search product by ID
         /// </summary>
-        /// <param name="id">Id do produto</param>
+        /// <param name="id">Product ID</param>
         /// <returns>Retorna o produto encontrado atraves do id</returns>
         Task<Product?> SearchProductById(Guid id);
 
         /// <summary>
-        /// Lista os produtos que estao salvos
+        /// List the products that are saved
         /// </summary>
-        /// <returns>Lista de produtos encontrados</returns>
+        /// <returns>List of products found</returns>
         Task<IEnumerable<Product>> ListProducts();
 
         /// <summary>
-        /// Atualiza produto
+        /// Update product
         /// </summary>
-        /// <param name="product">Produto que sera atualizado</param>
+        /// <param name="product">Product that will be updated</param>
         void UpdateProduct(Product product);
 
         /// <summary>
-        /// Exclui um produto 
+        /// Deletes a product
         /// </summary>
-        /// <param name="product">Produto que sera excluido</param>
+        /// <param name="product">Product that will be excluded</param>
         void DeleteProduct(Product product);
     }
 }

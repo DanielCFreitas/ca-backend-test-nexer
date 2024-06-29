@@ -1,12 +1,12 @@
-﻿namespace NexusTest.SharedKernel.Data
+﻿namespace NexerTest.SharedKernel.Data
 {
     /// <summary>
-    /// IUnitOfWork para realizar operacoes no banco de dados
+    /// IUnitOfWork to perform database operations
     /// </summary>
     public interface IUnitOfWork
     {
         /// <summary>
-        /// Persiste as alteracoes necessarias
+        /// Persists the necessary changes
         /// </summary>
         Task CommitAsync();
     }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace NexusTest.Api.Configuration
+namespace NexerTest.Api.Configuration
 {
     public static class SwaggerConfiguration
     {

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NexusTest.Domain\NexusTest.Domain.csproj" />
+    <ProjectReference Include="..\NexusTest.Domain\NexerTest.Domain.csproj" />
   </ItemGroup>
 
 </Project>

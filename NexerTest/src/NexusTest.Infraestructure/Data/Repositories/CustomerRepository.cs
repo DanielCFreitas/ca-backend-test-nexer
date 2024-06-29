@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NexusTest.Domain.Entities;
-using NexusTest.Domain.Repositories;
-using NexusTest.SharedKernel.Data;
+using NexerTest.Domain.Entities;
+using NexerTest.Domain.Repositories;
+using NexerTest.Infraestructure.Data;
+using NexerTest.SharedKernel.Data;
 
-namespace NexusTest.Infraestructure.Data.Repositories
+namespace NexerTest.Infraestructure.Data.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {

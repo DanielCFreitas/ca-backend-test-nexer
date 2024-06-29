@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NexusTest.SharedKernel\NexusTest.SharedKernel.csproj" />
+    <ProjectReference Include="..\NexusTest.SharedKernel\NexerTest.SharedKernel.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,30 +1,36 @@
-﻿using NexusTest.SharedKernel.Data;
-using NexusTest.SharedKernel.Validations;
+﻿using NexerTest.SharedKernel.Data;
+using NexerTest.SharedKernel.Validations;
 
-namespace NexusTest.Domain.Entities
+namespace NexerTest.Domain.Entities
 {
     /// <summary>
-    /// Classe que representa um Produto
+    /// Class that represents a product
     /// </summary>
     public class Product : BaseEntity
     {
-        public Product(string name) : base(Guid.NewGuid())
+        public Product(Guid id, string name) : base(id)
         {
             Name = name;
+
+            ValidateEntity();
         }
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
+        /// <summary>
+        /// Change the product name
+        /// </summary>
+        /// <param name="name">Product name</param>
         public void ChangeName(string name)
         {
-            Validacoes.CampoEstaVazioOuNulo(Name, "O campo Name não pode estar vazio ou nulo");
+            Validations.FieldIsNullOrEmpty(Name, "The Name field cannot be empty or null");
             Name = name;
         }
 
-        public override void ValidarEntidade()
+        public override void ValidateEntity()
         {
-            Validacoes.CampoEstaVazio(Id, "O campo Id não pode estar vazio");
-            Validacoes.CampoEstaVazioOuNulo(Name, "O campo Name não pode estar vazio ou nulo");
+            Validations.FieldIsEmpty(Id, "The Id field cannot be empty");
+            Validations.FieldIsNullOrEmpty(Name, "The Name field cannot be empty or null");
         }
     }
 }

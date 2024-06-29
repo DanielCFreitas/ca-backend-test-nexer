@@ -1,42 +1,42 @@
-﻿using NexusTest.Domain.Entities;
-using NexusTest.SharedKernel.Data;
+﻿using NexerTest.Domain.Entities;
+using NexerTest.SharedKernel.Data;
 
-namespace NexusTest.Domain.Repositories
+namespace NexerTest.Domain.Repositories
 {
     /// <summary>
-    /// Repository que representa clientes dentro do sistem
+    /// Repository for the customer entity
     /// </summary>
-    public interface ICustomerRepository : RepositoryBase<Customer>
+    public interface ICustomerRepository : IRepositoryBase<Customer>
     {
         /// <summary>
-        /// Cadastra um novo cliente no banco de dados
+        /// Register a new customer in the database
         /// </summary>
         /// <param name="customer">Cliente que sera cadastrado</param>
         void AddCustomer(Customer customer);
 
         /// <summary>
-        /// Busca cliente por Id
+        /// Search customer by ID
         /// </summary>
-        /// <param name="id">Id do cliente</param>
-        /// <returns>Retorna o cliente encontrado atraves do id</returns>
+        /// <param name="id">Client ID</param>
+        /// <returns>Returns the customer found using the id</returns>
         Task<Customer?> SearchCustomerById(Guid id);
 
         /// <summary>
-        /// Lista os clientes que estao salvos
+        /// List the clients that are saved
         /// </summary>
-        /// <returns>Lista de clientes encontrados</returns>
+        /// <returns>List of customers found</returns>
         Task<IEnumerable<Customer>> ListCustomers();
 
         /// <summary>
-        /// Atualiza cliente
+        /// Update client
         /// </summary>
-        /// <param name="customer">Cliente que sera atualizado</param>
+        /// <param name="customer">Client to be updated</param>
         void UpdateCustomer(Customer customer);
 
         /// <summary>
-        /// Exclui um cliente 
+        /// Deletes a customer
         /// </summary>
-        /// <param name="customer">Cliente que sera excluido</param>
+        /// <param name="customer">Customer who will be excluded</param>
         void DeleteCustomer(Customer customer);
     }
 }

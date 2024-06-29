@@ -1,13 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NexusTest.Domain.Entities;
-using NexusTest.SharedKernel.Data;
+using NexerTest.Domain.Entities;
+using NexerTest.SharedKernel.Data;
 
-namespace NexusTest.Infraestructure.Data
+namespace NexerTest.Infraestructure.Data
 {
     public class ApplicationDbContext : DbContext, IUnitOfWork
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
+        public DbSet<Billing> Billing { get; set; }
+        public DbSet<BillingLine> BillingLine { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
 

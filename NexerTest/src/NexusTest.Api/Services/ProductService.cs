@@ -1,11 +1,11 @@
-﻿using NexusTest.Api.DTO;
-using NexusTest.Api.Services.Interfaces;
-using NexusTest.Domain.Entities;
-using NexusTest.Domain.Repositories;
-using NexusTest.SharedKernel.Api;
+﻿using NexerTest.Api.DTO.Request;
+using NexerTest.Api.Services.Interfaces;
+using NexerTest.Domain.Entities;
+using NexerTest.Domain.Repositories;
+using NexerTest.SharedKernel.Api;
 using System.ComponentModel.DataAnnotations;
 
-namespace NexusTest.Api.Services
+namespace NexerTest.Api.Services
 {
     public class ProductService : BaseService, IProductService
     {
@@ -16,45 +16,45 @@ namespace NexusTest.Api.Services
             _productRepository = productRepository;
         }
 
-        public async Task<ValidationResult> AtualizarProduto(Guid id, AtualizarProdutoRequest request)
+        public async Task<ValidationResult> UpdateProduct(Guid id, UpdateProductRequest request)
         {
-            var produto = await _productRepository.SearchProductById(id);
+            var product = await _productRepository.SearchProductById(id);
 
-            if (produto is null)
-                return new ValidationResult("Produto não encontrado");
+            if (product is null)
+                return new ValidationResult("Product not found");
 
-            produto.ChangeName(request.Name);
+            product.ChangeName(request.Name);
 
-            _productRepository.UpdateProduct(produto);
-            await SalvarAlteracoes(_productRepository.unitOfWork);
+            _productRepository.UpdateProduct(product);
+            await SaveChanges(_productRepository.unitOfWork);
             return new ValidationResult(string.Empty);
         }
 
-        public async Task<Product?> BuscarProdutoPorId(Guid id)
+        public async Task<Product?> SearchProductById(Guid id)
         {
             return await _productRepository.SearchProductById(id);
         }
 
-        public async Task CadastrarProduto(CadastrarProdutoRequest request)
+        public async Task AddProduct(AddProductRequest request)
         {
-            var produto = new Product(request.Name);
-            _productRepository.AddProduct(produto);
-            await SalvarAlteracoes(_productRepository.unitOfWork);
+            var product = new Product(Guid.NewGuid(), request.Name);
+            _productRepository.AddProduct(product);
+            await SaveChanges(_productRepository.unitOfWork);
         }
 
-        public async Task<ValidationResult> ExcluirProduto(Guid id)
+        public async Task<ValidationResult> DeleteProductById(Guid id)
         {
-            var produto = await _productRepository.SearchProductById(id);
+            var product = await _productRepository.SearchProductById(id);
 
-            if (produto is null)
-                return new ValidationResult("Produto não encontrado");
+            if (product is null)
+                return new ValidationResult("Product not found");
 
-            _productRepository.DeleteProduct(produto);
-            await SalvarAlteracoes(_productRepository.unitOfWork);
+            _productRepository.DeleteProduct(product);
+            await SaveChanges(_productRepository.unitOfWork);
             return new ValidationResult(string.Empty);
         }
 
-        public async Task<IEnumerable<Product>> ListarProdutos()
+        public async Task<IEnumerable<Product>> ProductsList()
         {
             return await _productRepository.ListProducts();
         }

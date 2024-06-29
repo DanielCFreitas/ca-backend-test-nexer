@@ -1,52 +1,63 @@
-﻿using NexusTest.SharedKernel.Data;
-using NexusTest.SharedKernel.Validations;
+﻿using NexerTest.SharedKernel.Data;
+using NexerTest.SharedKernel.Validations;
 
-namespace NexusTest.Domain.Entities
+namespace NexerTest.Domain.Entities
 {
     /// <summary>
-    /// Classe que representa um cliente na aplicacao
+    /// Class that represents a Customer
     /// </summary>
     public class Customer : BaseEntity
     {
-        public Customer(string name, string email, string address) : base(Guid.NewGuid())
+        public Customer(Guid id, string name, string email, string address) : base(id)
         {
             Name = name;
             Email = email;
             Address = address;
 
-            ValidarEntidade();
+            ValidateEntity();
         }
 
         public string Name { get; private set; }
         public string Email { get; private set; }
         public string Address { get; private set; }
 
+        /// <summary>
+        /// Change the Customer Name
+        /// </summary>
+        /// <param name="name">Customer Name</param>
         public void ChangeName(string name)
         {
-            Validacoes.CampoEstaVazioOuNulo(name, "O campo Name não pode estar vazio ou nulo");
+            Validations.FieldIsNullOrEmpty(name, "The Name field cannot be empty or null");
             Name = name;
         }
 
+        /// <summary>
+        /// Change the Customer Email
+        /// </summary>
+        /// <param name="email">Customer Email</param>
         public void ChangeEmail(string email)
         {
-            Validacoes.CampoEstaVazioOuNulo(email, "O campo Email não pode estar vazio ou nulo");
+            Validations.FieldIsNullOrEmpty(email, "The Email field cannot be empty or null");
             Email = email;
         }
 
-
+        /// <summary>
+        /// Change the Customer Address
+        /// </summary>
+        /// <param name="address">Customer Address</param>
         public void ChangeAddress(string address)
         {
-            Validacoes.CampoEstaVazioOuNulo(address, "O campo Address não pode estar vazio ou nulo");
+            Validations.FieldIsNullOrEmpty(address, "The Address field cannot be empty or null");
             Address = address;
         }
 
 
-        public override void ValidarEntidade()
+        public override void ValidateEntity()
         {
-            Validacoes.CampoEstaVazio(Id, "O campo Id não pode estar vazio");
-            Validacoes.CampoEstaVazioOuNulo(Name, "O campo Name não pode estar vazio ou nulo");
-            Validacoes.CampoEstaVazioOuNulo(Address, "O campo Address não pode estar vazio ou nulo");
-            Validacoes.CampoEstaVazioOuNulo(Email, "O campo Email não pode estar vazio ou nulo");
+            Validations.FieldIsEmpty(Id, "The Id field cannot be empty");
+            Validations.FieldIsNullOrEmpty(Name, "The Name field cannot be empty or null");
+            Validations.FieldIsNullOrEmpty(Address, "The Address field cannot be empty or null");
+            Validations.FieldIsNullOrEmpty(Email, "The Email field cannot be empty or null");
         }
     }
 }

@@ -1,20 +1,23 @@
-﻿namespace NexusTest.SharedKernel.Data
+﻿namespace NexerTest.SharedKernel.Data
 {
     /// <summary>
-    /// Classe abstrata que representa uma entidade dentro do sistema
+    /// Abstract class that represents an entity within the system
     /// </summary>
     public abstract class BaseEntity
     {
-        protected BaseEntity(Guid id)
+        protected BaseEntity(Guid? id = null)
         {
-            Id = id;
+            if (id is null)
+                Id = Guid.NewGuid();
+            else
+                Id = (Guid)id;
         }
 
         public Guid Id { get; private set; }
 
         /// <summary>
-        /// Método para realizar validacoes necessarias na entidade
+        /// Method to perform necessary validations on the entity
         /// </summary>
-        public abstract void ValidarEntidade();
+        public abstract void ValidateEntity();
     }
 }

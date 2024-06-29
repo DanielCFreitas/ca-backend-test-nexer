@@ -1,42 +1,42 @@
-﻿using NexusTest.Api.DTO;
-using NexusTest.Domain.Entities;
+﻿using NexerTest.Api.DTO.Request;
+using NexerTest.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace NexusTest.Api.Services.Interfaces
+namespace NexerTest.Api.Services.Interfaces
 {
     public interface IProductService
     {
         /// <summary>
-        /// Cadastra um novo produto
+        /// Add a new Product
         /// </summary>
         /// <returns></returns>
-        Task CadastrarProduto(CadastrarProdutoRequest request);
+        Task AddProduct(AddProductRequest request);
 
         /// <summary>
-        /// Lista todos os produtos
+        /// Products List
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Product>> ListarProdutos();
+        Task<IEnumerable<Product>> ProductsList();
 
         /// <summary>
-        /// Busca produto por id
+        /// Search a product by ID
         /// </summary>
-        /// <param name="id">Id do produto</param>
+        /// <param name="id">Product ID</param>
         /// <returns></returns>
-        Task<Product?> BuscarProdutoPorId(Guid id);
+        Task<Product?> SearchProductById(Guid id);
 
         /// <summary>
-        /// Atualiza um produto no banco
+        /// Update a product
         /// </summary>
-        /// <param name="request">Produtos para ser atualizado</param>
+        /// <param name="request">Updated product</param>
         /// <returns></returns>
-        Task<ValidationResult> AtualizarProduto(Guid id, AtualizarProdutoRequest request);
+        Task<ValidationResult> UpdateProduct(Guid id, UpdateProductRequest request);
 
         /// <summary>
-        /// Exclui um produto atraves do id
+        /// Deletes a product using id
         /// </summary>
-        /// <param name="id">id do produto</param>
+        /// <param name="id">Product ID</param>
         /// <returns></returns>
-        Task<ValidationResult> ExcluirProduto(Guid id);
+        Task<ValidationResult> DeleteProductById(Guid id);
     }
 }

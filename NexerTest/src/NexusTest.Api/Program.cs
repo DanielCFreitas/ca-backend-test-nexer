@@ -1,4 +1,4 @@
-using NexusTest.Api.Configuration;
+using NexerTest.Api.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;

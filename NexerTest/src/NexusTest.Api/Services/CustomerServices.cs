@@ -1,11 +1,11 @@
-﻿using NexusTest.Api.DTO;
-using NexusTest.Api.Services.Interfaces;
-using NexusTest.Domain.Entities;
-using NexusTest.Domain.Repositories;
-using NexusTest.SharedKernel.Api;
+﻿using NexerTest.Api.DTO.Request;
+using NexerTest.Api.Services.Interfaces;
+using NexerTest.Domain.Entities;
+using NexerTest.Domain.Repositories;
+using NexerTest.SharedKernel.Api;
 using System.ComponentModel.DataAnnotations;
 
-namespace NexusTest.Api.Services
+namespace NexerTest.Api.Services
 {
     public class CustomerServices : BaseService, ICustomerService
     {
@@ -16,47 +16,47 @@ namespace NexusTest.Api.Services
             _customerRepository = customerRepository;
         }
 
-        public async Task<ValidationResult> AtualizarCliente(Guid id, AtualizarClienteRequest request)
+        public async Task<ValidationResult> UpdateCustomer(Guid id, UpdateCustomerRequest request)
         {
-            var cliente = await _customerRepository.SearchCustomerById(id);
+            var customer = await _customerRepository.SearchCustomerById(id);
 
-            if (cliente is null)
-                return new ValidationResult("Cliente não encontrado");
+            if (customer is null)
+                return new ValidationResult("Customer not found");
 
-            cliente.ChangeName(request.Name);
-            cliente.ChangeEmail(request.Email);
-            cliente.ChangeAddress(request.Address);
+            customer.ChangeName(request.Name);
+            customer.ChangeEmail(request.Email);
+            customer.ChangeAddress(request.Address);
 
-            _customerRepository.UpdateCustomer(cliente);
-            await SalvarAlteracoes(_customerRepository.unitOfWork);
+            _customerRepository.UpdateCustomer(customer);
+            await SaveChanges(_customerRepository.unitOfWork);
             return new ValidationResult(string.Empty);
         }
 
-        public async Task<Customer?> BuscarClientePorId(Guid id)
+        public async Task<Customer?> SearchCustomerById(Guid id)
         {
             return await _customerRepository.SearchCustomerById(id);
         }
 
-        public async Task CadastrarCliente(CadastrarClienteRequest request)
+        public async Task AddCustomer(AddCustomerRequest request)
         {
-            var cliente = new Customer(request.Name, request.Email, request.Address);
-            _customerRepository.AddCustomer(cliente);
-            await SalvarAlteracoes(_customerRepository.unitOfWork);
+            var customer = new Customer(Guid.NewGuid(), request.Name, request.Email, request.Address);
+            _customerRepository.AddCustomer(customer);
+            await SaveChanges(_customerRepository.unitOfWork);
         }
 
-        public async Task<ValidationResult> ExcluirCliente(Guid id)
+        public async Task<ValidationResult> DeleteCustomerById(Guid id)
         {
-            var cliente = await _customerRepository.SearchCustomerById(id);
+            var customer = await _customerRepository.SearchCustomerById(id);
 
-            if (cliente is null)
-                return new ValidationResult("Cliente não encontrado");
+            if (customer is null)
+                return new ValidationResult("Customer not found");
 
-            _customerRepository.DeleteCustomer(cliente);
-            await SalvarAlteracoes(_customerRepository.unitOfWork);
+            _customerRepository.DeleteCustomer(customer);
+            await SaveChanges(_customerRepository.unitOfWork);
             return new ValidationResult(string.Empty);
         }
 
-        public async Task<IEnumerable<Customer>> ListarClientes()
+        public async Task<IEnumerable<Customer>> CustomersList()
         {
             return await _customerRepository.ListCustomers();
         }

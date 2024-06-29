@@ -1,42 +1,42 @@
-﻿using NexusTest.Api.DTO;
-using NexusTest.Domain.Entities;
+﻿using NexerTest.Api.DTO.Request;
+using NexerTest.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace NexusTest.Api.Services.Interfaces
+namespace NexerTest.Api.Services.Interfaces
 {
     public interface ICustomerService
     {
         /// <summary>
-        /// Cadastra um novo cliente
+        /// Add a new customer
         /// </summary>
         /// <returns></returns>
-        Task CadastrarCliente(CadastrarClienteRequest request);
+        Task AddCustomer(AddCustomerRequest request);
 
         /// <summary>
-        /// Lista todos os clientes
+        /// List all customers
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Customer>> ListarClientes();
+        Task<IEnumerable<Customer>> CustomersList();
 
         /// <summary>
-        /// Busca cliente por id
+        /// Find customer by ID
         /// </summary>
-        /// <param name="id">Id do cliente</param>
+        /// <param name="id">Customer ID</param>
         /// <returns></returns>
-        Task<Customer?> BuscarClientePorId(Guid id);
+        Task<Customer?> SearchCustomerById(Guid id);
 
         /// <summary>
-        /// Atualiza um cliente no banco
+        /// Update customer
         /// </summary>
-        /// <param name="request">Cliente para ser atualizado</param>
+        /// <param name="request">Customer updated</param>
         /// <returns></returns>
-        Task<ValidationResult> AtualizarCliente(Guid id, AtualizarClienteRequest request);
+        Task<ValidationResult> UpdateCustomer(Guid id, UpdateCustomerRequest request);
 
         /// <summary>
-        /// Exclui um cliente atraves do id
+        /// Delete a customer by ID
         /// </summary>
-        /// <param name="id">id do cliente</param>
+        /// <param name="id">Customer ID</param>
         /// <returns></returns>
-        Task<ValidationResult> ExcluirCliente(Guid id);
+        Task<ValidationResult> DeleteCustomerById(Guid id);
     }
 }

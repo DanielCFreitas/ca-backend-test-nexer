@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NexusTest.Api.DTO;
-using NexusTest.Api.Services.Interfaces;
-using NexusTest.SharedKernel.Api;
+using NexerTest.Api.DTO.Request;
+using NexerTest.Api.Services.Interfaces;
+using NexerTest.SharedKernel.Api;
 using System.ComponentModel.DataAnnotations;
 
-namespace NexusTest.Api.Controllers
+namespace NexerTest.Api.Controllers
 {
     [Route("/[controller]")]
     public class ProductController : BaseController
@@ -19,40 +19,40 @@ namespace NexusTest.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var produtos = await _productService.ListarProdutos();
-            return BaseResponse(produtos);
+            var product = await _productService.ProductsList();
+            return BaseResponse(product);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
-            var produto = await _productService.BuscarProdutoPorId(id);
-            if (produto == null)
-                return BaseResponse(new ValidationResult("Produto não encontrado"));
-            return BaseResponse(produto);
+            var product = await _productService.SearchProductById(id);
+            if (product == null)
+                return BaseResponse(new ValidationResult("Product not found"));
+            return BaseResponse(product);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CadastrarProdutoRequest request)
+        public async Task<IActionResult> Post([FromBody] AddProductRequest request)
         {
-            await _productService.CadastrarProduto(request);
+            await _productService.AddProduct(request);
             return BaseResponse();
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid id, [FromBody] AtualizarProdutoRequest request)
+        public async Task<IActionResult> Put(Guid id, [FromBody] UpdateProductRequest request)
         {
-            var validationResult = await _productService.AtualizarProduto(id, request);
+            var validationResult = await _productService.UpdateProduct(id, request);
             return BaseResponse(validationResult);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var produto = await _productService.ExcluirProduto(id);
-            if (produto == null)
-                return BaseResponse(new ValidationResult("Produto não encontrado"));
-            return BaseResponse(produto);
+            var product = await _productService.DeleteProductById(id);
+            if (product == null)
+                return BaseResponse(new ValidationResult("Product not found"));
+            return BaseResponse(product);
         }
     }
 }
