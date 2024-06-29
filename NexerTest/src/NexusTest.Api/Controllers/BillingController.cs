@@ -15,6 +15,13 @@ namespace NexerTest.Api.Controllers
             _billingService = billingService;
         }
 
+        /// <summary>
+        /// Returns list of billings
+        /// </summary>
+        /// <returns>List of billings</returns>
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -22,6 +29,13 @@ namespace NexerTest.Api.Controllers
             return BaseResponse(billings);
         }
 
+        /// <summary>
+        /// Add a new billing
+        /// </summary>
+        /// <returns></returns>
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] AddBillingRequest request)
         {

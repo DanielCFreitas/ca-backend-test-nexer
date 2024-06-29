@@ -16,6 +16,12 @@ namespace NexerTest.Api.Controllers
             _productService = productService;
         }
 
+        /// <summary>
+        /// Returns list of products
+        /// </summary>
+        /// <returns>List of billings</returns>
+        /// <response code="200">OK</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -23,6 +29,13 @@ namespace NexerTest.Api.Controllers
             return BaseResponse(product);
         }
 
+        /// <summary>
+        /// Returns a product by ID
+        /// </summary>
+        /// <returns>Customer</returns>
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
@@ -32,6 +45,13 @@ namespace NexerTest.Api.Controllers
             return BaseResponse(product);
         }
 
+        /// <summary>
+        /// Add a new product
+        /// </summary>
+        /// <returns></returns>
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] AddProductRequest request)
         {
@@ -39,6 +59,13 @@ namespace NexerTest.Api.Controllers
             return BaseResponse();
         }
 
+        /// <summary>
+        /// Update a product
+        /// </summary>
+        /// <returns></returns>
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Guid id, [FromBody] UpdateProductRequest request)
         {
@@ -46,6 +73,13 @@ namespace NexerTest.Api.Controllers
             return BaseResponse(validationResult);
         }
 
+        /// <summary>
+        /// Delete a product
+        /// </summary>
+        /// <returns></returns>
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
