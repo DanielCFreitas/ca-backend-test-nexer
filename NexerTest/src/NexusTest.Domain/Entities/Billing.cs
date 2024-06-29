@@ -66,6 +66,10 @@ namespace NexerTest.Domain.Entities
         public override void ValidateEntity()
         {
             Validations.FieldIsNullOrEmpty(InvoiceNumber, "InvoiceNumber field is empty");
+            Validations.FieldMustBeLessThan(InvoiceNumber.Length, 101, "The field must have a maximum of 100 characters");
+            Validations.FieldIsNullOrEmpty(Date, "The field needs to be provided");
+            Validations.FieldIsNullOrEmpty(DueDate, "The field needs to be provided");
+            Validations.FieldIsNullOrEmpty(Currency, "The field needs to be provided");
             Validations.FieldIsEmpty(CustomerId, "The customer ID needs to be provided");
             Validations.FieldMustBeLessThan(Date, DueDate, "The expiration date field must be before the purchase date");
         }

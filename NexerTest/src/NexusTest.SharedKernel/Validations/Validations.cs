@@ -20,6 +20,19 @@ namespace NexerTest.SharedKernel.Validations
         }
 
         /// <summary>
+        /// Method to validate whether the field is empty or null
+        /// </summary>
+        /// <param name="field">Field to be tested</param>
+        /// <param name="messageException">Error message</param>
+        /// <exception cref="FieldIsNullOrEmptyException"></exception>
+        public static void FieldIsNullOrEmpty(DateTime field, string messageException)
+        {
+            if (field == DateTime.MinValue)
+                throw new FieldIsNullOrEmptyException(messageException);
+        }
+
+
+        /// <summary>
         /// Method to validate if the field is empty
         /// </summary>
         /// <param name="field">Field to be tested</param>
@@ -65,6 +78,19 @@ namespace NexerTest.SharedKernel.Validations
         /// <param name="messageException">Error message</param>
         /// <exception cref="FieldMustBeGratherThanException"></exception>
         public static void FieldMustBeLessThan(DateTime field, DateTime comparator, string messageException)
+        {
+            if (field > comparator)
+                throw new FieldMustBeGratherThanException(messageException);
+        }
+
+        /// <summary>
+        /// Validates whether the date is before the date being compared
+        /// </summary>
+        /// <param name="field">Field to be tested</param>
+        /// <param name="comparator">Reference value</param>
+        /// <param name="messageException">Error message</param>
+        /// <exception cref="FieldMustBeGratherThanException"></exception>
+        public static void FieldMustBeLessThan(int field, int comparator, string messageException)
         {
             if (field > comparator)
                 throw new FieldMustBeGratherThanException(messageException);
