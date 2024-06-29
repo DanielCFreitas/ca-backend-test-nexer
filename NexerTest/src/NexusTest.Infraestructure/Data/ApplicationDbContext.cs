@@ -13,6 +13,13 @@ namespace NexerTest.Infraestructure.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public async Task CommitAsync()
         {
             await base.SaveChangesAsync();
